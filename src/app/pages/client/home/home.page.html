@@ -1,0 +1,70 @@
+<ion-content [scrollEvents]="true" [appHideToolbar]="toolbar">
+  <ion-header>
+    <ion-toolbar #toolbar class="toolbar" color="transparent">
+      <ion-menu-button slot="start"></ion-menu-button>
+      <img class="logo" src="assets/images/logo.png" />
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="background-default">
+    <!---->
+    <div class="container-slide">
+      <swiper
+        #swipe
+        [config]="configSwipeSlidesMovies"
+        [hidden]="listPopularMovies.length < 1"
+      >
+        <ng-template
+          [swiperSlide]="swipe"
+          *ngFor="let movie of listPopularMovies"
+        >
+        <app-card-slide-movie (click)="onClickMovie(movie, 'FILME')" [movie]="movie"></app-card-slide-movie>
+        <div class="gradient bottom">
+          <h1>ASSISTA AGORA</h1>
+          <p>Sempre há algo que ninguém ver, mas está ali.</p>
+        </div>
+        </ng-template>
+      </swiper>
+    </div>
+    <!---->
+    <div class="container-category">
+      <ion-label>
+        <h1>Episódios gratuitos</h1>
+        <p>
+          Curta episódios completos sem custo e sem a necessidade de assinatura.
+        </p>
+      </ion-label>
+    </div>
+    <!---->
+    <swiper #swipe [config]="configSwipeMovie">
+      <ng-template
+        [swiperSlide]="swipe"
+        *ngFor="let movie of listPopularTv"
+      >
+        <app-card-movie (click)="onClickMovie(movie, 'SERIE')" [movie]="movie"></app-card-movie>
+      </ng-template>
+    </swiper>
+    <!---->
+    <div class="container-category">
+      <ion-label>
+        <h1>Icônicos e imperdíveis</h1>
+        <p>
+          Titulos que todo mundo assistiu, amou e assistiu de novo. E de novo...
+        </p>
+      </ion-label>
+    </div>
+    <!---->
+    <swiper #swipe [config]="configSwipeMovie">
+      <ng-template
+        [swiperSlide]="swipe"
+        *ngFor="let movie of listPopularMovies"
+      >
+        <app-card-movie (click)="onClickMovie(movie, 'FILME')" [movie]="movie"></app-card-movie>
+      </ng-template>
+    </swiper>
+    <!---->
+    <div class="btn-explore">
+      <ion-button routerLink="/explore" size="full" shape="round" color="light">Explore Mais</ion-button>
+    </div>
+  </div>
+</ion-content>

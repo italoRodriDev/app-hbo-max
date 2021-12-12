@@ -1,0 +1,24 @@
+<ion-tabs (ionTabsDidChange)="onTabChange($event)">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tab-home">
+      <ion-icon
+        name="home-outline"
+        [color]="tabSelected == 'tab-home' ? 'primary' : 'light' "
+      ></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab-search">
+      <ion-icon
+        name="search-outline"
+        [color]="tabSelected == 'tab-search' ? 'primary' : 'light' "
+      ></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab-profile">
+      <ion-icon
+        name="person-outline"
+        [color]="tabSelected == 'tab-profile' ? 'primary' : 'light' "
+      ></ion-icon>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

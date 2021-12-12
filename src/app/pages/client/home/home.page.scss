@@ -1,0 +1,82 @@
+.toolbar {
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: fixed;
+  .logo {
+    margin-top: 10px;
+    margin-right: 35px;
+    width: 150px;
+  }
+}
+
+ion-button{
+  margin: 20px;
+}
+
+.container-slide {
+  top: 0;
+  img {
+    min-height: 500px;
+  }
+}
+
+.best-movies {
+  width: 100%;
+  height: 30%;
+  background-size: cover;
+  background-position: center;
+}
+
+.gradient {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(3, 3, 40, 0.32396708683473385) 13%,
+    rgba(3, 3, 40, 1) 78%
+  );
+  background-size: cover;
+
+  &.top {
+    top: 0;
+    transform: rotate(180deg);
+  }
+  &.bottom {
+    bottom: 0;
+    height: 150px;
+  }
+
+  h1 {
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    text-align: center;
+  }
+  p {
+    color: white;
+
+    font-size: 13px;
+    text-align: center;
+  }
+}
+
+.container-category {
+  left: 0;
+  margin-left: 8px;
+  margin-top: 30px;
+  h1 {
+    color: white;
+    font-size: 18px;
+    margin-right: 8px;
+  }
+  p {
+    color: white;
+    font-size: 13px;
+    margin-right: 8px;
+  }
+}

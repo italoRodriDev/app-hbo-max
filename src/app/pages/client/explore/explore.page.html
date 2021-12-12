@@ -1,0 +1,112 @@
+<ion-content mode="md" scrollEvents="true" [appHideToolbar]="toolbar">
+  <ion-header>
+    <ion-toolbar #toolbar class="toolbar" color="transparent">
+        <ion-button slot="start" fill="clear" shape="round" (click)="onDismiss()">
+          <ion-icon
+            name="chevron-back"
+            color="light"
+          ></ion-icon>
+        </ion-button>
+        <img class="logo" src="assets/images/logo.png" />
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="background-default">
+    <section class="container-lists">
+      <!---->
+      <ion-segment
+        (ionChange)="getSegmentPage($event)"
+        [(ngModel)]="segmentPage"
+      >
+        <!---->
+        <ion-segment-button value="DESTACADOS">
+          <ion-label color="light">Destacados</ion-label>
+        </ion-segment-button>
+        <!---->
+        <ion-segment-button value="FILMES">
+          <ion-label color="light">Filmes</ion-label>
+        </ion-segment-button>
+        <!---->
+        <ion-segment-button value="SERIES">
+          <ion-label color="light">Séries</ion-label>
+        </ion-segment-button>
+        <!---->
+      </ion-segment>
+
+      <!--Destacados-->
+      <section [hidden]="segmentPage != 'DESTACADOS' ">
+        <!--Bigcard-->
+        <swiper #swipe [config]="configSwipeMovie">
+          <ng-template [swiperSlide]="swipe" *ngFor="let movie of listPopularMovies">
+            <app-card-big-movie (click)="onClickMovie(movie, 'FILME')" [movie]="movie"></app-card-big-movie>
+          </ng-template>
+        </swiper>
+        
+        <!---->
+        <div class="container-category">
+          <ion-label>
+            <h1>Top Filmes</h1>
+          </ion-label>
+        </div>
+        <!--Top filmes bem avaliados-->
+        <div class="container-grid">
+          <ion-grid>
+            <ion-row>
+              <app-card-movie-search
+                (click)="onClickMovie(movie, 'FILME')"
+                *ngFor="let movie of listTopMovies"
+                [movie]="movie"
+              ></app-card-movie-search>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <!---->
+        <div class="container-category">
+          <ion-label>
+            <h1>Top Séries</h1>
+          </ion-label>
+        </div>
+        <!--Top series bem avaliados-->
+        <div class="container-grid">
+          <ion-grid>
+            <ion-row>
+              <app-card-movie-search
+                (click)="onClickMovie(serie, 'SERIE')"
+                *ngFor="let serie of listTopSeries"
+                [movie]="serie"
+              ></app-card-movie-search>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </section>
+      <!--Filmes-->
+      <section [hidden]="segmentPage != 'FILMES' ">
+        <div class="container-grid">
+          <ion-grid>
+            <ion-row>
+              <app-card-movie-search
+                (click)="onClickMovie(movie, 'FILME')"
+                *ngFor="let movie of listPopularMovies"
+                [movie]="movie"
+              ></app-card-movie-search>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </section>
+      <!--Series-->
+      <section [hidden]="segmentPage != 'SERIES' ">
+        <div class="container-grid">
+          <ion-grid>
+            <ion-row>
+              <app-card-movie-search
+                (click)="onClickMovie(serie, 'SERIE')"
+                *ngFor="let serie of listPopularTv"
+                [movie]="serie"
+              ></app-card-movie-search>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </section>
+    </section>
+  </div>
+</ion-content>

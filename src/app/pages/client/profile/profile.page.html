@@ -1,0 +1,66 @@
+<ion-content [scrollEvents]="true" [appHideToolbar]="toolbar">
+  <ion-header>
+    <ion-toolbar #toolbar class="toolbar" color="transparent">
+      <ion-buttons>
+        <ion-button>
+          <ion-icon slot="icon-only" name="settings-outline" color="light"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <!---->
+  <div class="container-profile">
+    <ion-label>
+      <!---->
+      <img class="img-avatar" lazyLoad="assets/images/avatars/avatar_demolidor.jpg"/>
+      <!---->
+      <p>
+        <ion-button fill="clear" shape="round">Mudar de Perfil</ion-button>
+      </p>
+    </ion-label>
+  </div>
+  <!---->
+  <!---->
+  <!---->
+  <ion-segment (ionChange)="getSegmentPage($event)" value="MINHA_LISTA" [(ngModel)]="segmentPage">
+    <!---->
+    <ion-segment-button value="MINHA_LISTA">
+      <ion-label>Minha Lista</ion-label>
+    </ion-segment-button>
+    <!---->
+    <ion-segment-button value="DOWNLOADS">
+      <ion-label>Downloads</ion-label>
+    </ion-segment-button>
+    <!---->
+  </ion-segment>
+  <!---->
+  <!---->
+  <!--Minha Lista-->
+  <ion-list [hidden]="segmentPage != 'MINHA_LISTA' ">
+    <!---->
+    <ion-item (click)="onClickCategoryMyList('FILMES')" button lines="none">
+      <ion-label slot="start">Filmes</ion-label>
+      <ion-icon slot="end" [name]="!toggleFilmes ? 'chevron-down-outline' : 'chevron-up-outline' " color="light"></ion-icon>
+    </ion-item>
+    <!---->
+    <div [hidden]="!toggleFilmes">
+      <app-card-movie-mylist *ngFor="let movie of listPopularMovies" [movie]="movie"></app-card-movie-mylist>
+    </div>
+    <!---->
+    <ion-item (click)="onClickCategoryMyList('SERIES')" button lines="none">
+      <ion-label slot="start">Séries</ion-label>
+      <ion-icon slot="end" [name]="!toggleSeries ? 'chevron-down-outline' : 'chevron-up-outline' " color="light"></ion-icon>
+    </ion-item>
+    <!---->
+    <div [hidden]="!toggleSeries">
+      <app-card-movie-mylist *ngFor="let movie of listPopularTv" [movie]="movie"></app-card-movie-mylist>
+    </div>
+  </ion-list>
+  <!--Downloads-->
+  <ion-list [hidden]="segmentPage != 'DOWNLOADS' ">
+    <ion-item>
+      <ion-label>Nenhum download...</ion-label>
+    </ion-item>
+  </ion-list>
+  <!---->
+</ion-content>

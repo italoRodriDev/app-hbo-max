@@ -1,0 +1,43 @@
+.background-default {
+  height: 100%;
+  width: 100%;
+  background: rgb(153, 30, 235);
+  background: linear-gradient(
+    180deg,
+    rgba(153, 30, 235, 1) 10%,
+    rgba(55, 0, 179, 1) 50%
+  );
+}
+
+.container-spinner {
+  margin-top: 70%;
+  text-align: center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  ion-spinner {
+    margin-top: 30%;
+    height: 200px;
+    width: 300px;
+  }
+}
+
+img {
+  width: 200px;
+}
+
+.ng-lazyloaded {
+  animation: fadein 2.8s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

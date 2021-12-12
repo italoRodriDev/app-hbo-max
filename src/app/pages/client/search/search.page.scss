@@ -1,0 +1,31 @@
+.toolbar {
+  text-align: center;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: fixed;
+}
+
+.container-category {
+  left: 0;
+  margin-left: 8px;
+  margin-top: 80px;
+  h1 {
+    color: white;
+    font-size: 18px;
+    margin-right: 8px;
+  }
+  p {
+    color: white;
+    font-size: 13px;
+    margin-right: 8px;
+  }
+}
+
+.container-grid{
+  left: 0;
+  right: 0;
+  margin-left: 5px;
+  text-align: center;
+  margin-top: 10px;
+}

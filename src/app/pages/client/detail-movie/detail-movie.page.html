@@ -1,0 +1,174 @@
+<ion-content mode="md" [scrollEvents]="true" [appHideToolbar]="toolbar">
+  <ion-header>
+    <ion-toolbar #toolbar class="toolbar" color="transparent">
+      <ion-buttons>
+        <ion-button (click)="onDismiss()">
+          <ion-icon slot="icon-only" name="chevron-back" color="light"></ion-icon>
+        </ion-button>
+        <ion-label *ngIf="movie.title">{{ movie.title }}</ion-label>
+        <ion-label *ngIf="movie.name">{{ movie.name }}</ion-label>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <!---->
+  <div class="container-movie">
+    <!---->
+    <img [lazyLoad]="'https://www.themoviedb.org/t/p/w600_and_h900_bestv2' + movie?.poster_path"/>
+    <div class="gradient bottom">
+      <!---->
+      <ion-row>
+        <!---->
+        <ion-col size="3">
+          <ion-button fill="clear" shape="round">
+            <ion-icon class="icon-btn-big" name="play-circle-outline" color="light"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <!---->
+        <ion-col size="3"></ion-col>
+        <!---->
+        <ion-col size="3">
+          <ion-button fill="clear" shape="round">
+            <ion-icon class="icon-btn-small" name="add-outline" color="light"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <!---->
+        <ion-col size="3">
+          <ion-button fill="clear" shape="round">
+            <ion-icon name="arrow-down-outline" color="light"></ion-icon>
+          </ion-button>
+        </ion-col>
+        <!---->
+      </ion-row>
+      <!---->
+      <h1 *ngIf="movie.title" >{{ movie?.title }}</h1>
+      <h1 *ngIf="movie.name" >{{ movie?.name }}</h1>
+    </div>
+  </div>
+  <!---->
+  <div [hidden]="type != 'SERIE'">
+    <ion-row>
+      <ion-col size="5">
+        <ion-item lines="none">
+          <h6>Temporadas</h6>
+        </ion-item>
+      </ion-col>
+      <ion-col size="7">
+        <ion-segment (ionChange)="getSegmentSeason($event)" scrollable="true">
+          <ion-segment-button [value]="season" *ngFor="let season of listSeason" >
+            <ion-label class="label-list-season">{{ season }}</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-col>
+    </ion-row>
+    <ion-item-divider></ion-item-divider>
+    <ion-list>
+      <ion-list-header [hidden]="!currentSeason">
+        <ion-label>{{ currentSeason }}</ion-label>
+      </ion-list-header>
+      <app-card-episode [episode]="episode" *ngFor="let episode of listEpisodes" ></app-card-episode>
+    </ion-list>
+  </div>
+  <!---->
+  <div class="container-info">
+  <ion-row>
+    <!---->
+    <ion-col size="2">
+      <p>2 H</p>
+    </ion-col>
+    <!---->
+    <ion-col size="2">
+      <div class="box-clas-indicativa livre"><p>L</p></div>
+    </ion-col>
+    <!---->
+    <ion-col size="2">
+      <p>{{ movie?.release_date | date: 'YYYY' }}</p>
+    </ion-col>
+    <!---->
+    <ion-col size="5">
+      <p>4K UHD</p>
+    </ion-col>
+    <!---->
+  </ion-row>
+  <br />
+  <!---->
+  <ion-text>
+    <p>{{ movie?.overview }}</p>
+  </ion-text>
+  <!---->
+  <ion-text>
+    <p class="p-obh">
+      OBH Max vai transmitir com o melhor qualidade de áudio e vídeo
+      disponíveis no seu dispositivo.
+    </p>
+  </ion-text>
+  <!---->
+  <div class="container-category">
+    <ion-label>
+      <h1>Outros conteúdos semelhantes</h1>
+    </ion-label>
+  </div>
+  <!---->
+  <swiper #swipe [config]="configSwipeMovie">
+    <ng-template [swiperSlide]="swipe" *ngFor="let movie of listMovies">
+      <app-card-movie (click)="onClickMovie(movie)" [movie]="movie"></app-card-movie>
+    </ng-template>
+  </swiper>
+  <!---->
+  <ion-list>
+    <!---->
+    <ion-item (click)="onClickButtonInfo('ELENCO')" button lines="none">
+      <ion-label slot="start">Elenco e equipe</ion-label>
+      <ion-icon slot="end" [name]="!toggleElenco ? 'chevron-down-outline' : 'chevron-up-outline' " color="light"></ion-icon>
+    </ion-item>
+    <!---->
+    <div class="container-item-info" [hidden]="!toggleElenco">
+      <ion-label>
+        <p>Italo Rodrigues</p>
+      </ion-label>
+    </div>
+    <!---->
+    <ion-item (click)="onClickButtonInfo('PRODUTORES')" button lines="none">
+      <ion-label slot="start">Produtores</ion-label>
+      <ion-icon slot="end" [name]="!toggleProdutores ? 'chevron-down-outline' : 'chevron-up-outline' " color="light"></ion-icon>
+    </ion-item>
+    <!---->
+    <div class="container-item-info" [hidden]="!toggleProdutores">
+      <ion-label>
+        <p>Italo Rodrigues</p>
+      </ion-label>
+    </div>
+    <!---->
+    <ion-item (click)="onClickButtonInfo('DIRETORES')" button lines="none">
+      <ion-label slot="start">Diretores</ion-label>
+      <ion-icon slot="end" [name]="!toggleDiretores ? 'chevron-down-outline' : 'chevron-up-outline' " color="light"></ion-icon>
+    </ion-item>
+    <!---->
+    <div class="container-item-info" [hidden]="!toggleDiretores">
+      <ion-label>
+        <p>Italo Rodrigues</p>
+      </ion-label>
+    </div>
+    <!---->
+    <ion-item (click)="onClickButtonInfo('ROTEIRISTAS')" button lines="none">
+      <ion-label slot="start">Roteiristas</ion-label>
+      <ion-icon slot="end" [name]="!toggleRoteiristas ? 'chevron-down-outline' : 'chevron-up-outline' " color="light"></ion-icon>
+    </ion-item>
+    <!---->
+    <div class="container-item-info" [hidden]="!toggleRoteiristas">
+      <ion-label>
+        <p>Italo Rodrigues</p>
+      </ion-label>
+    </div>
+    <!---->
+    <ion-item (click)="onClickButtonInfo('INFO_CLASS')" button lines="none">
+      <ion-label slot="start">Informações de Classificação</ion-label>
+      <ion-icon slot="end" [name]="!toggleInfoClass ? 'chevron-down-outline' : 'chevron-up-outline' " color="light"></ion-icon>
+    </ion-item>
+    <!---->
+    <div class="container-item-info" [hidden]="!toggleInfoClass">
+      <div class="box-clas-indicativa"><p>L</p></div>
+    </div>
+    <!---->
+  </ion-list>
+  </div>
+</ion-content>

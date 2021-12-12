@@ -1,0 +1,26 @@
+<ion-content mode="md" [scrollEvents]="true" [appHideToolbar]="toolbar">
+    <div class="background-default">
+      <ion-header>
+        <ion-toolbar #toolbar class="toolbar" color="transparent">
+          <ion-searchbar placeholder="O que você está procurando?"></ion-searchbar>
+        </ion-toolbar>
+      </ion-header>  
+    <!---->
+    <div class="container-category">
+      <ion-label>
+        <h1>OBH Recomenda</h1>
+      </ion-label>
+    </div>
+    <!---->
+    <div class="container-grid">
+      <ion-grid>
+        <ion-row>
+          <app-card-movie-search
+            *ngFor="let movie of listPopularMovies"
+            [movie]="movie"
+          ></app-card-movie-search>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,7 @@
+<ion-card button>
+  <ion-card-header>
+    <img [lazyLoad]="'https://www.themoviedb.org/t/p/w600_and_h900_bestv2' + episode?.still_path">
+    <ion-label color="light">{{ episode?.episode_number }}. {{ episode?.name }}</ion-label>
+    <ion-card-subtitle>45 MIN</ion-card-subtitle>
+  </ion-card-header>
+</ion-card>

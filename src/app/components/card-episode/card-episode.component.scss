@@ -1,0 +1,26 @@
+ion-card {
+  --box-shadow: none;
+  --border: none;
+
+  img.ng-lazyloaded {
+    animation: fadein 2.8s;
+  }
+
+  img {
+    border-radius: 8px;
+    height: 200px;
+    min-width: 100%;
+  }
+  ion-label {
+    font-weight: bold;
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
